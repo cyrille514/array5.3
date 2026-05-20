@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+
+      @layer base {
+         :root {
+           @apply text-sm;
+           line-height: 1.5;
+         }
+      }
+    </style> <!-- Corregido: Estaba mal cerrado como </style -->
+
+    <title>Lista de Compras</title>
+</head>
+<body class="bg-blue-50 min-h-screen p-4 font-sans text-gray-800">
+
+    <!-- Contenedor Principal -->
+    <div class="max-w-6xl mx-auto bg-white p-4 md:p-6 rounded-xl shadow-sm">
+        
+        <!-- Título -->
+        <h1 class="text-2xl md:text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
+            🍓 Lista de Compras
+        </h1>
+
+        <!-- Barra de Controles Superior -->
+        <div class="flex flex-col gap-4 mb-8 bg-gray-50 p-4 rounded-lg md:flex-row md:items-center md:justify-between">
+            
+            <!-- Agregar Producto -->
+            <div class="flex flex-col gap-2 w-full md:flex-row md:items-center md:flex-1">
+                <label class="text-sm font-medium shrink-0">Producto que deseas agregar:</label>
+                <div class="flex w-full gap-2">
+                    <!-- Añadido id="inputProducto" -->
+                    <input type="text" id="inputProducto" placeholder="Ejemplo: Pan" class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-blue-500">
+                    <!-- Añadido id="btnAgregar" -->
+                    <button id="btnAgregar" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition shrink-0 cursor-pointer">Agregar</button>
+                </div>
+            </div>
+
+            <!-- Acciones de Eliminación / Vaciar -->
+            <div class="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+                <div class="flex items-center gap-2">
+                    <span class="text-sm font-medium">Posición:</span>
+                    <!-- Añadido id="inputPosicion" -->
+                    <input type="number" id="inputPosicion" value="0" min="0" class="border border-gray-300 rounded p-2 w-16 text-center">
+                </div>
+                <!-- Añadido id="btnEliminarPosicion" -->
+                <button id="btnEliminarPosicion" class="bg-orange-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 transition flex-1 md:flex-none cursor-pointer">
+                    Eliminar por posición
+                </button>
+                <!-- Añadido id="btnVaciar" -->
+                <button id="btnVaciar" class="bg-emerald-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-emerald-600 transition flex-1 md:flex-none cursor-pointer">
+                    Vaciar carrito
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Zona de Contenido (Lista y Carrito) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            
+            <!-- Cuadro de la Lista Izquierda (Corregido aspect-[4/3] por min-h para que crezca dinámicamente) -->
+            <div id="contenedorLista" class="border-2 border-black rounded-lg min-h-[300px] max-h-[500px] overflow-y-auto w-full bg-white p-4 shadow-inner flex flex-col gap-2">
+                <!-- Los elementos de tu lista se renderizan aquí mediante JavaScript -->
+            </div>
+
+            <!-- Sección del Carrito Derecha -->
+            <div class="flex flex-col items-center justify-center p-4">
+                <div class="w-full max-w-[280px] md:max-w-[320px] relative">
+                    <svg viewBox="0 0 24 24" class="w-full h-auto text-cyan-600 stroke-current fill-none stroke-2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <div class="absolute top-2 right-2 w-6 h-6 bg-red-500 rounded-full border-2 border-white"></div>
+                </div>
+                
+                <!-- Contador de productos: Añadido id="contadorCarrito" -->
+                <p class="text-center font-medium mt-4 text-base md:text-lg">
+                    Número de productos en el carrito: <span id="contadorCarrito" class="text-red-500 font-bold">0</span>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <script src="./js/app.js"></script>
+</body>
+</html>
